@@ -4,7 +4,7 @@ Add-Type -AssemblyName System.Windows.Forms,System.Drawing
 # META
 
 function Get-TzePSVersion {
-	return 1
+	return 2
 }
 
 # JOBS
@@ -38,7 +38,12 @@ function Show-MessageBoxAsync {
 		[System.Windows.Forms.MessageBoxIcon]$Icon = [System.Windows.Forms.MessageBoxIcon]::None
 	)
 	
-	return [System.Windows.Forms.MessageBox]::Show($Content, $Title, $Buttons, $Icon) &
+	return Start-Job -ArgumentList $Content,$Title,$Buttons,$Icon -ScriptBlock {
+		param ($c, $t, $b, $i)
+
+		[System.Windows.Forms.Application]::EnableVisualStyles()
+		[System.Windows.Forms.MessageBox]::Show($c, $t, $b, $i)
+	}
 }
 
 # WINDOWS FORMS
