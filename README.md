@@ -4,11 +4,15 @@ TzePS is a PowerShell library that aims to simplify some of the otherwise comple
 
 ## Contributing
 
-Contributions are welcome! All I ask is you try to keep the file categorized, (I've set a low bar) that you increment the version number in Get-TzePSVersion, and that your commit title starts with the new version number in brackets. (Example: `[2] Fixed a bug in ...`)
+Contributions are welcome! All I ask is you try to keep the file categorized, (I've set a low bar) that you increment the version number in Get-TzePSVersion, and that your commit title starts with the new version number in brackets. (Example: `[2] Fixed a bug in ...`) If you are not changing the library itself, mark your commit with the current version and a letter like `[2a]` instead.
 
 ## Importing
 
-Due to having a class, TzePS cannot be imported as a module. Instead you must dot-source it. If you download TzePS.ps1, this can be done with `. .\TzePS.ps1`. If you wish to import it from the internet, you can do so with `. ([scriptblock]::Create((Invoke-WebRequest https://raw.githubusercontent.com/Tzebruh/TzePS/main/TzePS.ps1).Content))`, though this would require internet access each time your script is run.
+Due to having a class, TzePS cannot be imported as a module. Instead you must dot-source it. If you download TzePS.ps1, this can be done with `. .\TzePS.ps1`. If you wish to import it from the internet, you can do so with the following snippet, though it would require internet access each time your script is run.
+
+```pwsh
+. ([scriptblock]::Create((Invoke-WebRequest https://raw.githubusercontent.com/Tzebruh/TzePS/main/TzePS.ps1 -UseBasicParsing).Content))
+```
 
 ## Functions
 
