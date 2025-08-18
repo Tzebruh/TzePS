@@ -4,7 +4,7 @@ Add-Type -AssemblyName System.Windows.Forms,System.Drawing
 # META
 
 function Get-TzePSVersion {
-	return 2
+	return 3
 }
 
 # JOBS
@@ -67,6 +67,7 @@ function New-Form {
 	$form.Height = $Height
 	$form.AutoSize = $AutoSize
 	$form.AutoSizeMode = $AutoSizeMode
+	$form.MinimumSize = $AutoSize ? (New-Object System.Drawing.Size($Width, $Height)) : (New-Object System.Drawing.Size(0, 0))
 	$form.StartPosition = $StartPosition
 	$form.MaximizeBox = $MaximizeBox
 	$form.MinimizeBox = $MinimizeBox
@@ -169,7 +170,7 @@ class SimpleFormBuilder {
 	}
 
 	static [SimpleFormBuilder] Create([string] $Title) {
-		$f = New-Form -Title $Title -AutoSize $true -AutoSizeMode GrowAndShrink -StartPosition CenterScreen -MaximizeBox $false -FormBorderStyle FixedDialog
+		$f = New-Form -Title $Title -Width 250 -Height 0 -AutoSize $true -AutoSizeMode GrowAndShrink -StartPosition CenterScreen -MaximizeBox $false -FormBorderStyle FixedDialog
 		$f.Padding = 10
 		return New-Object SimpleFormBuilder($f)
 	}
